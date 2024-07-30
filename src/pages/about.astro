@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 const pageTitle = "About Me";
 
 const identity = {
@@ -6,6 +8,12 @@ const identity = {
   country: "Iran",
   occupation: "Front-End Programmer",
   hobbies: ["chess", "games"],
+};
+
+const skillProps = {
+    color: "navy",
+    fontWeight: "bold",
+    textCase: "uppercase",
 };
 
 const skills = ["HTML", "CSS", "JavaScript", "React", "Svelte", "Tailwind", "Astro"];
@@ -24,7 +32,7 @@ const finished = false;
     <body>
         <a href="/">Home</a>
         <a href="/about/">About</a>
-        <a href="/blog/">About</a>
+        <a href="/blog/">Blog</a>
         <h1>My Astro Site</h1>
         <h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
@@ -44,10 +52,21 @@ const finished = false;
         {skills.length > 0 && 
             <p>My skills are:</p>
             <ul>
-                {skills.map((skill, i) => <li>{skill}</li>)}
+                {skills.map((skill, i) => <li class="skill">{skill}</li>)}
             </ul>
         } 
 
         {finished && "I finished this tutorial!"}
     </body>
+    <style define:vars={{"skill-color": skillProps.color, "skill-font-weight": skillProps.fontWeight, "skill-text-case": skillProps.textCase}}>
+        h1 {
+            color: purple;
+            font-size: 4rem;
+        }
+        .skill {
+            color: var(--skill-color);
+            font-weight: var(--skill-font-weight);
+            text-transform: var(--skill-text-case);
+        }
+    </style>
 </html>
